@@ -5,6 +5,7 @@
 body {
   min-height: 100vh;
   margin: 0;
+  padding: 10px;
   background: whitesmoke;
 }
 
@@ -19,6 +20,7 @@ img {
   transition: transform 300ms;
 }
 
-img:hover {
-  transform: scale(0.95);
+img:hover,
+img:focus {
+  transform: scale(0.92);
 }
