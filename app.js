@@ -13,7 +13,17 @@ const displayPhotos = () => {
     photoContainer.append(img);
     photosContainer.append(photoContainer);
   });
+  IO.observe(photosContainer.lastChild);
 };
+
+const IO = new IntersectionObserver((entries, observer) => {
+  const [lastPhoto] = entries;
+  const lastPhotoIsLoaded = lastPhoto.target.querySelector("img").complete;
+  if (lastPhoto.isIntersecting && lastPhotoIsLoaded) {
+    observer.unobserve(lastPhoto.target);
+    getPhotos();
+  }
+});
 
 const getPhotos = async () => {
   const response = await fetch(API_URL);
