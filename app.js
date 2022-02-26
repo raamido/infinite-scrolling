@@ -11,6 +11,7 @@ const displayPhotos = () => {
     photoContainer.setAttribute("tabindex", "0");
     const img = document.createElement("img");
     img.setAttribute("src", photo.urls.regular);
+    img.setAttribute("alt", photo.description);
     photoContainer.append(img);
     photosContainer.append(photoContainer);
   });
