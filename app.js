@@ -1,6 +1,7 @@
 const key = "OymF8oUgJ_u6DIIPyDxq0J31HLH8gruqloJc7nBV_4U";
 const API_URL = `https://api.unsplash.com/photos/random?client_id=${key}&count=11&orientation=squarish`;
 const photosContainer = document.querySelector(".gallery");
+const spinner = document.querySelector(".spinner");
 let photosArray = [];
 
 const displayPhotos = () => {
@@ -26,9 +27,16 @@ const IO = new IntersectionObserver((entries, observer) => {
 });
 
 const getPhotos = async () => {
-  const response = await fetch(API_URL);
-  photosArray = await response.json();
-  displayPhotos();
+  spinner.hidden = false;
+  try {
+    const response = await fetch(API_URL);
+    photosArray = await response.json();
+    displayPhotos();
+  } catch {
+    alert(`couldn't fetch photos`);
+  } finally {
+    spinner.hidden = true;
+  }
 };
 
 getPhotos();
