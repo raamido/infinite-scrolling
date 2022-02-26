@@ -14,6 +14,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   justify-content: center;
   gap: 8px;
+  min-height: 40vh;
 }
 
 img {
@@ -25,4 +26,45 @@ img {
 .photo_container:focus img {
   transform: scale(0.92);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.spinner {
+  padding: 5px;
+  text-align: center;
+}
+
+svg {
+  width: 3.75em;
+  transform-origin: center;
+  animation: rotate 2s linear infinite;
+}
+
+circle {
+  fill: none;
+  stroke: #121212;
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dashoffset: -125px;
+  }
 }
